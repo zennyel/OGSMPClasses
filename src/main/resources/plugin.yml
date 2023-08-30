@@ -1,0 +1,4 @@
+name: OGSMPClasses
+version: '${project.version}'
+main: com.zennyel.ogsmpclasses.OGSMPClasses
+api-version: '1.20'

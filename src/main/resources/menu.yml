@@ -1,0 +1,46 @@
+Class_Menu:
+  Title: "&6Class selection"
+  Druid:
+    displayName: "&6Druid"
+    material: COBBLESTONE
+    lore:
+      - '&7Click to select this class'
+  Rogue:
+    displayName: "&6Rogue/Shinobi"
+    material: COBBLESTONE
+    lore:
+      - '&7Click to select this class'
+  Cleric:
+    displayName: "&6Cleric"
+    material: COBBLESTONE
+    lore:
+      - '&7Click to select this class'
+  Shogun:
+    displayName: "&6Shogun"
+    material: COBBLESTONE
+    lore:
+      - '&7Click to select this class'
+
+
+Ability_Menu:
+  Title: "&6Ability menu"
+  Druid:
+    displayName: "&6Druid"
+    material: COBBLESTONE
+    lore:
+      - ""
+  Rogue:
+    displayName: "&6Rogue/Shinobi"
+    material: COBBLESTONE
+    lore:
+      - ""
+  Cleric:
+    displayName: "&6Cleric"
+    material: COBBLESTONE
+    lore:
+      - ""
+  Shogun:
+    displayName: "&6Shogun"
+    material: COBBLESTONE
+    lore:
+      - ""
