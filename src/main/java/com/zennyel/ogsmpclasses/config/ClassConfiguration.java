@@ -1,4 +1,10 @@
 package com.zennyel.ogsmpclasses.config;
 
-public class ClassConfiguration {
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class ClassConfiguration extends AbstractConfiguration{
+    public ClassConfiguration(JavaPlugin instance, String file) {
+        super(instance, file);
+    }
+
 }

@@ -1,30 +1,63 @@
 package com.zennyel.ogsmpclasses.manager;
 
 import com.zennyel.ogsmpclasses.OGSMPClasses;
+import com.zennyel.ogsmpclasses.classes.Class;
+import com.zennyel.ogsmpclasses.database.ClassDAO;
+import org.bukkit.entity.Player;
 
-public class ClassManager implements ManagerProperty{
+import java.util.HashMap;
 
-    private OGSMPClasses ogsmpClasses;
+public class ClassManager {
 
+    private ClassDAO classDAO;
+    private HashMap<Player, Class> playerCache;
 
-
-    @Override
-    public void load() {
-
+    public ClassManager(OGSMPClasses ogsmpClasses) {
+        this.classDAO = new ClassDAO(ogsmpClasses);
+        this.playerCache = new HashMap<>();
     }
 
-    @Override
-    public void save() {
-
+    public void load(Player player) {
+        ThreadManager.runAsync(()->{
+            if(classDAO.selectClass(player) == null){
+                return;
+            }
+            playerCache.put(player, classDAO.selectClass(player));
+        });
     }
 
-    @Override
-    public void update() {
-
+    public void save(Player player) {
+        ThreadManager.runAsync(()->{
+            if(!playerCache.containsKey(player)){
+                return;
+            }
+            if(classDAO.selectClass(player) == null){
+                classDAO.insertClass(player, playerCache.get(player));
+            }else update(player);
+        });
     }
 
-    @Override
-    public void delete() {
+    private void update(Player player) {
+            if(!playerCache.containsKey(player)){
+                return;
+            }
+            if(classDAO.selectClass(player) != null){
+                classDAO.updateClass(player, playerCache.get(player));
+            }
+    }
 
+    public void delete(Player player) {
+        ThreadManager.runAsync(()->{
+            if(!playerCache.containsKey(player)){
+                return;
+            }
+            playerCache.put(player, null);
+            if(classDAO.selectClass(player) == null){
+                return;
+            }
+            classDAO.deleteClass(player);
+
+
+        });
     }
 }
